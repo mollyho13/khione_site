@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khionê - Conseil Stratégique PME & Investisseurs</title>
+    <link rel="stylesheet" href="styles.css">
+        <style>
+                /* Client Info Section */
+        body {
+  background: linear-gradient(to bottom, #abbef0 0%, transparent 300px);
+}
+        .client-info {
+            padding: 100px 0;
+        }
+
+        .support-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .support-header h2 {
+            font-size: 3rem;
+            color: #2d3748;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .support-header p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+            }
+
+        .support-features {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0 5rem;
+            flex-wrap: wrap;
+        }
+
+        .support-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e6fffa 100%);
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .support-feature .icon {
+            font-size: 1.5rem;
+        }
+
+        .support-feature span {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .consultation-request {
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #2d3748;
+            padding: 4rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+        }
+
+        .consultation-request h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 16px;
+            border: 2px solid rgba(45, 55, 72, 0.2);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #181ec7 100%);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 2rem auto 0;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .support-feature {
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(135deg, #f8fafc 0%, #e6fffa 100%);
+  border-left: 4px solid #667eea;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font: inherit;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.support-feature:hover {
+  background: #e0f2f1;
+  transform: translateY(-2px);
+}
+    </style>
+</head>
+  <body>
+    <header class="main-header hero-mode" id="mainHeader">
+        <div class="header-container">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <a href="index.html" class="logo-brand" aria-label="Accueil Khionê">
+                    <img src="logo.png" alt="Logo Khionê">
+                </a>
+                <span class="logo-tagline">Conseil stratégique</span>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <div class="search-container">
+                    <input
+                        type="text"
+                        class="search-box"
+                        placeholder="Rechercher..."
+                        id="searchBox"
+                    >
+                </div>
+                
+                <a href="contact.html" class="contact-btn">Contact</a>
+                
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlay Menu -->
+    <div class="overlay-menu" id="overlayMenu">
+        <button class="menu-close" id="menuClose" aria-label="Fermer le menu">✕</button>
+        
+        <div class="menu-left">
+            <div class="menu-info">
+                <div class="menu-company-info">
+                    <img src="logo2.png" style="max-width: 300px; height: auto; margin-bottom: 20px;">
+                    <p>Votre partenaire stratégique pour la croissance des PME & ETI.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-right">
+            <nav>
+                <ul class="menu-nav">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="equipe.html">Équipe</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+        <!-- Client Info Section -->
+<section class="client-info">
+  <div class="container">
+    <div class="support-header">
+      <h2>Accompagnement par des consultants d'affaires de premier plan</h2>
+    </div>
+
+<div class="support-features">
+  <button class="support-feature" data-topic="strategie">
+    <div class="icon">📋</div>
+    <span>Stratégie</span>
+  </button>
+  <button class="support-feature" data-topic="defis">
+    <div class="icon">⚡</div>
+    <span>Défis</span>
+  </button>
+  <button class="support-feature" data-topic="opportunites">
+    <div class="icon">🎯</div>
+    <span>Opportunités</span>
+  </button>
+</div>
+  </div>
+<div class="container">
+  <div class="consultation-request">
+    <h3>Demander une consultation gratuite</h3>
+    <form action="send_consultation.php" method="POST">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="name">Votre nom *</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Téléphone (optionnel)</label>
+          <input type="tel" id="phone" name="phone" placeholder="+33 12 34 56 78">
+        </div>
+        <div class="form-group">
+          <label for="business">Nom de l’entreprise *</label>
+          <input type="text" id="business" name="business" required>
+        </div>
+        <div class="form-group">
+          <label for="business-age">Depuis combien de temps l’entreprise existe-t-elle ? *</label>
+          <select id="business-age" name="business-age" required>
+            <option value="">Veuillez sélectionner</option>
+            <option value="0-1">0-1 an</option>
+            <option value="1-3">1-3 ans</option>
+            <option value="3-5">3-5 ans</option>
+            <option value="5-10">5-10 ans</option>
+            <option value="10+">Plus de 10 ans</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="turnover">Quel est le chiffre d’affaires annuel de l’entreprise ? *</label>
+          <select id="turnover" name="turnover" required>
+            <option value="">Veuillez sélectionner</option>
+            <option value="0-100k">0-100k €</option>
+            <option value="100k-500k">100k-500k €</option>
+            <option value="500k-1m">500k-1M €</option>
+            <option value="1m-5m">1M-5M €</option>
+            <option value="5m+">Plus de 5M €</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="employees">Combien de personnes emploie l’entreprise ? *</label>
+          <select id="employees" name="employees" required>
+            <option value="">Veuillez sélectionner</option>
+            <option value="1-5">1-5 employés</option>
+            <option value="6-10">6-10 employés</option>
+            <option value="11-25">11-25 employés</option>
+            <option value="26-50">26-50 employés</option>
+            <option value="50+">Plus de 50 employés</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="business-type">Quelle est l’activité principale de votre entreprise ? *</label>
+          <input type="text" id="business-type" name="business-type" placeholder="Décrivez en quelques mots" required>
+        </div>
+        <div class="form-group full-width">
+          <label for="support-needed">Quel est le principal besoin d’accompagnement ? *</label>
+          <textarea id="support-needed" name="support-needed" rows="4" required></textarea>
+        </div>
+      </div>
+      <input type="hidden" id="form-title" name="form-title" value="Demander une consultation gratuite">
+      <button type="submit" class="submit-btn">Demander une consultation gratuite</button>
+    </form>
+  </div>
+</div>
+
+    </section>
+        <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Khionê</h3>
+                <p>Votre partenaire stratégique pour la croissance et la transformation des PME.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Navigation</h3>
+                <a href="index.html">Accueil</a>
+                <a href="apropos.html">À propos</a>
+                <a href="services.html">Découvrir nos services</a>                
+                <a href="equipe.html">Équipe</a>
+                <a href="contact.html">Contactez-nous</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: contact@khione.fr</p>
+                <p>Téléphone: +33 6 62 96 03 82</p>
+                <p>Adresse: 14 rue Charles V, 75004 Paris</p>
+            </div>
+            <div class="footer-section">
+    <h3>Suivez-nous</h3>
+    <a href="https://www.linkedin.com/company/khion%C3%AA/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+</div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Khionê. Tous droits réservés.
+        </div>
+    </footer>
+    <script src="search.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const term = new URLSearchParams(window.location.search).get('highlight');
+  if (!term) return;
+
+  const regex = new RegExp(`(${term})`, 'gi');
+
+  function walk(node) {
+    if (node.nodeType === 3) {
+      const value = node.nodeValue;
+      if (regex.test(value)) {
+        const span = document.createElement('span');
+        span.innerHTML = value.replace(regex, '<mark>$1</mark>');
+        node.replaceWith(span);
+      }
+    } else if (node.nodeType === 1 && !['SCRIPT', 'STYLE'].includes(node.tagName)) {
+      for (let child of Array.from(node.childNodes)) {
+        walk(child);
+      }
+    }
+  }
+
+  walk(document.body);
+
+  const firstMatch = document.querySelector('mark');
+  if (firstMatch) {
+    firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const features = document.querySelectorAll('.support-feature');
+  const formTitle = document.querySelector('.consultation-request h3');
+  const hiddenTitleInput = document.getElementById('form-title');
+
+
+  const topicData = {
+    strategie: {
+      title: "Demande de consultation stratégique"
+    },
+    defis: {
+      title: "Demande de consultation sur les défis"
+    },
+    opportunites: {
+      title: "Demande de consultation sur les opportunités"
+    }
+  };
+
+  features.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const topic = btn.getAttribute('data-topic');
+      if (topic && topicData[topic]) {
+
+        if (formTitle) {
+          formTitle.textContent = topicData[topic].title;
+        }
+        hiddenTitleInput.value = topicData[topic].title; // update hidden input
+      }
+    });
+  });
+});
+</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('mainHeader');
+            const menuToggle = document.getElementById('menuToggle');
+            const menuClose = document.getElementById('menuClose');
+            const overlayMenu = document.getElementById('overlayMenu');
+            const searchBox = document.getElementById('searchBox');
+
+            // Header scroll behavior
+            function handleScroll() {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+
+                if (scrolled > 100) {
+                    header.classList.add('scrolled');
+                    header.classList.remove('hero-mode');
+                } else {
+                    header.classList.remove('scrolled');
+                    header.classList.add('hero-mode');
+                }
+            }
+
+            window.addEventListener('scroll', handleScroll);
+
+            // Menu functionality
+            function openMenu() {
+                overlayMenu.classList.add('active');
+                menuToggle.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                overlayMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            menuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (overlayMenu.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            menuClose.addEventListener('click', closeMenu);
+
+            // Close menu when clicking on menu links
+            const menuLinks = document.querySelectorAll('.menu-nav a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Close menu when clicking outside
+            overlayMenu.addEventListener('click', function(e) {
+                if (e.target === overlayMenu) {
+                    closeMenu();
+                }
+            });
+
+            // Close menu with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlayMenu.classList.contains('active')) {
+                    closeMenu();
+                }
+            });
+
+            // Search functionality
+            searchBox.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    const query = searchBox.value.trim();
+                    if (query) {
+                        window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+                    }
+                }
+            });
+
+            // Animation on scroll for other elements
+            const observerOptions = { 
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Enhanced search box interactions
+            searchBox.addEventListener('focus', function() {
+                this.parentElement.classList.add('search-focused');
+            });
+
+            searchBox.addEventListener('blur', function() {
+                this.parentElement.classList.remove('search-focused');
+            });
+
+            // Parallax effect for hero section
+            function handleParallax() {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                if (hero && scrolled < window.innerHeight) {
+                    const rate = scrolled * -0.3;
+                    hero.style.transform = `translateY(${rate}px)`;
+                }
+            }
+
+            window.addEventListener('scroll', handleParallax);
+
+            // Initialize
+            handleScroll();
+        });
+    </script>
+  </body>
+</html>

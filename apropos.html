@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khionê - Conseil Stratégique PME & Investisseurs</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+
+        /* Why Us Section */
+        .why-us {
+    margin-top: 4rem; /* adds space above the section */
+    padding: 5rem 0;
+}
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #718096;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .why-us-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 3rem;
+    margin-top: 3rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+        .why-us-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(102, 126, 234, 0.1);
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+}
+
+        .why-us-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .why-us-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    color: white;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+        .card-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+        .card-description {
+    color: #4a5568;
+    line-height: 1.7;
+    font-size: 1rem;
+    flex-grow: 1;
+        }
+
+        /* Values Section */
+        .values {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .values-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+}
+
+
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .value-item:hover {
+            background: #f7fafc;
+            transform: translateY(-4px);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .value-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 1rem;
+            text-transform: capitalize;
+        }
+
+        .value-description {
+            color: #718096;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-center {
+                display: none;
+            }
+           
+            .section-title {
+                font-size: 2rem;
+            }
+           
+            .why-us-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 2rem;
+}
+
+.values-grid {
+    grid-template-columns: 1fr;
+}
+           
+            .why-us-card,
+            .value-item {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+
+    <header class="main-header hero-mode" id="mainHeader">
+        <div class="header-container">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <a href="index.html" class="logo-brand" aria-label="Accueil Khionê">
+                    <img src="logo.png" alt="Logo Khionê">
+                </a>
+                <span class="logo-tagline">Conseil stratégique</span>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <div class="search-container">
+                    <input
+                        type="text"
+                        class="search-box"
+                        placeholder="Rechercher..."
+                        id="searchBox"
+                    >
+                </div>
+                
+                <a href="contact.html" class="contact-btn">Contact</a>
+                
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlay Menu -->
+    <div class="overlay-menu" id="overlayMenu">
+        <button class="menu-close" id="menuClose" aria-label="Fermer le menu">✕</button>
+        
+        <div class="menu-left">
+            <div class="menu-info">
+                <div class="menu-company-info">
+                    <img src="logo2.png" style="max-width: 300px; height: auto; margin-bottom: 20px;">
+                    <p>Votre partenaire stratégique pour la croissance des PME & ETI.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-right">
+            <nav>
+                <ul class="menu-nav">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="equipe.html">Équipe</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+<!-- Why Us Section -->
+<section class="why-us" id="why-us">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Pourquoi nous choisir ?</h2>
+            <p class="section-subtitle">Nous combinons expertise métier, vision stratégique et excellence opérationnelle pour transformer vos ambitions en succès mesurables.</p>
+        </div>
+       
+        <div class="why-us-grid">
+            <div class="why-us-card fade-in">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">Ni consultants hors-sol, ni experts ultra-spécialisés</h3>
+                <p class="card-description">Nous accompagnons les PME en croissance ou en transformation avec une compréhension fine de leurs enjeux. Notre approche évite les recettes toutes faites et les discours trop formatés.</p>
+            </div>
+           
+            <div class="why-us-card fade-in">
+                <div class="card-icon">⚡</div>
+                <h3 class="card-title">L'alliance de la rigueur et de la souplesse</h3>
+                <p class="card-description">Nous conjuguons l'exigence et les méthodes des grands cabinets avec l'agilité, la proximité et la réactivité d'un partenaire indépendant.</p>
+            </div>
+           
+            <div class="why-us-card fade-in">
+                <div class="card-icon">💼</div>
+                <h3 class="card-title">Une double culture : entrepreneuriale et financière</h3>
+                <p class="card-description">Nous parlons aussi bien le langage du terrain que celui des investisseurs. Cette capacité à faire le lien entre opérationnel et stratégique fait notre singularité.</p>
+            </div>
+           
+            <div class="why-us-card fade-in">
+                <div class="card-icon">🚀</div>
+                <h3 class="card-title">Des consultants avec une expérience entrepreneuriale réelle</h3>
+                <p class="card-description">Tous nos consultants ont créé, dirigé ou redressé des entreprises. Cette expérience concrète nourrit notre manière d'aborder chaque mission : pragmatique, engagée, et tournée vers l'action.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="values" id="values">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Nos valeurs</h2>
+            <p class="section-subtitle">Les principes qui guident notre approche et définissent notre engagement envers nos clients.</p>
+        </div>
+       
+        <div class="values-grid">
+            <div class="value-item fade-in">
+                <div class="value-icon">🎯</div>
+                <h3 class="value-title">Agilité entrepreneuriale</h3>
+                <p class="value-description">Nous nous adaptons rapidement aux changements et prenons des décisions éclairées dans un environnement en constante évolution.</p>
+            </div>
+           
+            <div class="value-item fade-in">
+                <div class="value-icon">📈</div>
+                <h3 class="value-title">Orienté Impact</h3>
+                <p class="value-description">Chaque action que nous entreprenons vise à générer des résultats mesurables et durables pour votre entreprise.</p>
+            </div>
+           
+            <div class="value-item fade-in">
+                <div class="value-icon">🤝</div>
+                <h3 class="value-title">Présence sur le terrain</h3>
+                <p class="value-description">Nous croyons en l'importance d'être présents aux côtés de nos clients, pour comprendre leurs défis et les accompagner concrètement.</p>
+            </div>
+           
+            <div class="value-item fade-in">
+                <div class="value-icon">💡</div>
+                <h3 class="value-title">Idée actionnable</h3>
+                <p class="value-description">Nos recommandations sont toujours pratiques et réalisables, avec des plans d'action clairs et des étapes concrètes à suivre.</p>
+            </div>
+        </div>
+    </div>
+</section>
+      <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Khionê</h3>
+                <p>Votre partenaire stratégique pour la croissance et la transformation des PME.</p>
+            </div>
+           <div class="footer-section">
+                <h3>Navigation</h3>
+                <a href="index.html">Accueil</a>
+                <a href="apropos.html">À propos</a>
+                <a href="services.html">Découvrir nos services</a>               
+                <a href="equipe.html">Équipe</a>
+                <a href="contact.html">Contactez-nous</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: contact@khione.fr</p>
+                <p>Téléphone: +33 6 62 96 03 82</p>
+                <p>Adresse: 14 rue Charles V, 75004 Paris</p>
+            </div>
+            <div class="footer-section">
+    <h3>Suivez-nous</h3>
+    <a href="https://www.linkedin.com/company/khion%C3%AA/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+</div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Khionê. Tous droits réservés.
+        </div>
+    </footer>
+    <script src="search.js"></script>
+   <script>
+window.addEventListener('DOMContentLoaded', () => {
+  const term = new URLSearchParams(window.location.search).get('highlight');
+  if (!term) return;
+
+  const regex = new RegExp(`(${term})`, 'gi');
+
+  function walk(node) {
+    if (node.nodeType === 3) {
+      const value = node.nodeValue;
+      if (regex.test(value)) {
+        const span = document.createElement('span');
+        span.innerHTML = value.replace(regex, '<mark>$1</mark>');
+        node.replaceWith(span);
+      }
+    } else if (node.nodeType === 1 && !['SCRIPT', 'STYLE'].includes(node.tagName)) {
+      for (let child of Array.from(node.childNodes)) {
+        walk(child);
+      }
+    }
+  }
+
+  walk(document.body);
+
+  const firstMatch = document.querySelector('mark');
+  if (firstMatch) {
+    firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+});
+</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('mainHeader');
+            const menuToggle = document.getElementById('menuToggle');
+            const menuClose = document.getElementById('menuClose');
+            const overlayMenu = document.getElementById('overlayMenu');
+            const searchBox = document.getElementById('searchBox');
+
+            // Header scroll behavior
+            function handleScroll() {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+
+                if (scrolled > 100) {
+                    header.classList.add('scrolled');
+                    header.classList.remove('hero-mode');
+                } else {
+                    header.classList.remove('scrolled');
+                    header.classList.add('hero-mode');
+                }
+            }
+
+            window.addEventListener('scroll', handleScroll);
+
+            // Menu functionality
+            function openMenu() {
+                overlayMenu.classList.add('active');
+                menuToggle.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                overlayMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            menuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (overlayMenu.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            menuClose.addEventListener('click', closeMenu);
+
+            // Close menu when clicking on menu links
+            const menuLinks = document.querySelectorAll('.menu-nav a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Close menu when clicking outside
+            overlayMenu.addEventListener('click', function(e) {
+                if (e.target === overlayMenu) {
+                    closeMenu();
+                }
+            });
+
+            // Close menu with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlayMenu.classList.contains('active')) {
+                    closeMenu();
+                }
+            });
+
+            // Search functionality
+            searchBox.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    const query = searchBox.value.trim();
+                    if (query) {
+                        window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+                    }
+                }
+            });
+
+            // Animation on scroll for other elements
+            const observerOptions = { 
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Enhanced search box interactions
+            searchBox.addEventListener('focus', function() {
+                this.parentElement.classList.add('search-focused');
+            });
+
+            searchBox.addEventListener('blur', function() {
+                this.parentElement.classList.remove('search-focused');
+            });
+
+            // Parallax effect for hero section
+            function handleParallax() {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                if (hero && scrolled < window.innerHeight) {
+                    const rate = scrolled * -0.3;
+                    hero.style.transform = `translateY(${rate}px)`;
+                }
+            }
+
+            window.addEventListener('scroll', handleParallax);
+
+            // Initialize
+            handleScroll();
+        });
+    </script>
+</body>
+</html>

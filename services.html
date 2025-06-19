@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Khionê</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+                body {
+  background: linear-gradient(to bottom, #abbef0 0%, transparent 300px);
+}
+
+        /* Services Hero */
+        .services-hero {
+            background: linear-gradient(135deg, #667eea 0%, #322b9b 100%);
+            color: white;
+            padding: 120px ;
+            text-align: center;
+        }
+
+        .services-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .services-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Services Overview Section */
+        .services-overview {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .services-overview h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #2d3748;
+            font-weight: 700;
+        }
+
+        .services-overview .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #667eea;
+            margin-bottom: 5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-column {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .service-column.structuration {
+            background: linear-gradient(135deg, #1a365d 0%, #2a69ac 100%);
+        }
+
+        .service-column.croissance {
+            background: linear-gradient(135deg, #4c51bf 0%, #667eea 100%);
+        }
+
+        .service-column h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .service-column .check-icon {
+            width: 30px;
+            height: 30px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .service-item {
+            margin-bottom: 2.5rem;
+        }
+
+        .service-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .service-item p {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .digitalization-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .digitalization-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 200px;
+            height: 200px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(255,255,255,0.1)"><path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/></svg>') no-repeat;
+            background-size: contain;
+        }
+
+        .digitalization-section h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .digitalization-section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.95;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e6fffa 100%);
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: #2d3748;
+            font-weight: 700;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            font-size: 4rem;
+            color: #667eea;
+            opacity: 0.3;
+            font-family: serif;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 2rem;
+            color: #4a5568;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 1rem;
+        }
+
+        .testimonial-company {
+            color: #667eea;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Industries Section */
+        .industries {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+
+        .industries h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #2d3748;
+            font-weight: 700;
+        }
+
+        .industries-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #4a5568;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+            line-height: 1.7;
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .industry-card {
+            background: white;
+            padding: 2.5rem 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .industry-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .industry-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            background: linear-gradient(135deg, #f8fafc 0%, #e6fffa 100%);
+        }
+
+
+        .industry-image {
+            width: 100%;
+            height: 160px;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .industry-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .industry-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            transition: all 0.3s ease;
+        }
+
+        .industry-card:hover .industry-image img {
+            transform: scale(1.05);
+        }
+
+        .industry-card:hover .industry-overlay {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+        }
+
+        .industry-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3748;
+            line-height: 1.4;
+        }
+        /* Client Info Section */
+        .client-info {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .support-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .support-header h2 {
+            font-size: 3rem;
+            color: #2d3748;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .support-header p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .support-features {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0 5rem;
+            flex-wrap: wrap;
+        }
+
+        .support-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e6fffa 100%);
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .support-feature .icon {
+            font-size: 1.5rem;
+        }
+
+        .support-feature span {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .consultation-request {
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #2d3748;
+            padding: 4rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+        }
+
+        .consultation-request h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 16px;
+            border: 2px solid rgba(45, 55, 72, 0.2);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #181ec7 100%);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 2rem auto 0;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.3);
+        }
+
+
+        .support-feature {
+            cursor: pointer;
+            border: none;
+            background: linear-gradient(135deg, #f8fafc 0%, #e6fffa 100%);
+            border-left: 4px solid #667eea;
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font: inherit;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .support-feature:hover {
+        background: #e0f2f1;
+        transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-center {
+                display: none;
+            }
+
+            .services-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .services-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .support-features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .consultation-request {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header hero-mode" id="mainHeader">
+        <div class="header-container">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <a href="index.html" class="logo-brand" aria-label="Accueil Khionê">
+                    <img src="logo.png" alt="Logo Khionê">
+                </a>
+                <span class="logo-tagline">Conseil stratégique</span>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <div class="search-container">
+                    <input
+                        type="text"
+                        class="search-box"
+                        placeholder="Rechercher..."
+                        id="searchBox"
+                    >
+                </div>
+                
+                <a href="contact.html" class="contact-btn">Contact</a>
+                
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlay Menu -->
+    <div class="overlay-menu" id="overlayMenu">
+        <button class="menu-close" id="menuClose" aria-label="Fermer le menu">✕</button>
+        
+        <div class="menu-left">
+            <div class="menu-info">
+                <div class="menu-company-info">
+                    <img src="logo2.png" style="max-width: 300px; height: auto; margin-bottom: 20px;">
+                    <p>Votre partenaire stratégique pour la croissance des PME & ETI.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-right">
+            <nav>
+                <ul class="menu-nav">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="equipe.html">Équipe</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <main>
+        <!-- Services Hero -->
+        <section class="services-hero">
+            <div class="container">
+                <h1>Nos services</h1>
+                <p>Des solutions stratégiques sur-mesure pour accélérer la croissance de votre entreprise et maximiser sa valeur</p>
+            </div>
+        </section>
+
+        <!-- Services Overview -->
+        <section class="services-overview">
+            <div class="container">
+                <h2>Accélérer votre croissance</h2>
+                <p class="subtitle">Nous vous aidons à construire une plateforme de croissance solide, vous permettant d'accélérer et de mener à bien vos projets de développement.</p>
+               
+                <div class="services-layout">
+                    <div class="service-column structuration">
+                        <h3>
+                            <div class="check-icon">✓</div>
+                            Structuration
+                        </h3>
+        <div class="service-item">
+            <h4>Diagnostic stratégie et organisation</h4>
+            <ul>
+            <li>Diagnostic complet de votre business</li>
+            <li>Élaboration de votre plan stratégique selon votre ambition et votre vision</li>
+            </ul>
+        </div>
+
+  <div class="service-item">
+    <h4>Analyse et structuration financière</h4>
+    <ul>
+      <li>Outils et méthodes pour piloter la croissance, la rentabilité et la trésorerie</li>
+      <li>Objectif : rendre possibles tous vos projets de développement</li>
+    </ul>
+  </div>
+
+  <div class="service-item">
+    <h4>Développement international</h4>
+    <ul>
+      <li>Accompagnement vers les marchés étrangers</li>
+      <li>Stratégie d'expansion, adaptation locale, partenariats internationaux</li>
+    </ul>
+  </div>
+</div>
+
+<div class="service-column croissance">
+  <h3>
+    <div class="check-icon">✓</div>
+    Croissance
+  </h3>
+
+  <div class="service-item">
+    <h4>Accélérer la croissance de votre PME</h4>
+    <ul>
+      <li>Structuration du développement commercial</li>
+      <li>Growth hacking</li>
+      <li>Expansion sur le marché domestique et à l'international</li>
+    </ul>
+  </div>
+
+  <div class="service-item">
+    <h4>Marketing et communication</h4>
+    <ul>
+      <li>Stratégie marketing digitale et offline</li>
+      <li>Développement de la présence web et réseaux sociaux</li>
+    </ul>
+  </div>
+
+  <div class="service-item">
+    <h4>Financement, développement et transmission d'entreprise</h4>
+    <ul>
+      <li>Estimation des besoins financiers</li>
+      <li>Construction du plan de financement</li>
+      <li>Obtention de financements</li>
+      <li>Accompagnement de la transmission ou cession</li>
+    </ul>
+  </div>
+</div>
+</div>
+                <div class="digitalization-section">
+                    <h3>Digitalisation</h3>
+                    <p>L'ensemble de ces initiatives est porté par un effort de digitalisation, avec la mise en place des outils numériques les plus pertinents pour l'activité et le fonctionnement de votre entreprise (efficacité, gain de temps et facilité d'utilisation).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="container">
+                <h2>Ce que disent nos clients</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            Khionê nous a accompagnés dans notre stratégie d'expansion internationale. Leur approche pragmatique et leur expertise nous ont permis d'augmenter notre chiffre d'affaires de 40% en 18 mois.
+                        </div>
+                        <div class="testimonial-author">CEO</div>
+                        <div class="testimonial-company">Industrie: Technologie</div>
+                    </div>
+                   
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            L'équipe de Khionê a transformé notre approche commerciale. Le diagnostic stratégique a révélé des opportunités que nous n'avions pas identifiées. Résultat : une croissance de 60% sur notre marché principal.
+                        </div>
+                        <div class="testimonial-author">Directeur Général</div>
+                        <div class="testimonial-company">Industrie: Biotechnologie</div>
+                    </div>
+                   
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            Grâce à Khionê, nous avons réussi notre transmission d'entreprise dans les meilleures conditions. Leur accompagnement a été déterminant pour maximiser la valeur de notre société.
+                        </div>
+                        <div class="testimonial-author">Fondateur</div>
+                        <div class="testimonial-company">Industrie: Environnement</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+ <!-- Industries Section -->
+        <section class="industries">
+            <div class="container">
+                <h2>Secteurs d'expertise</h2>
+                <p class="industries-subtitle">Nous accompagnons les entreprises dans une large gamme de secteurs, apportant une expertise spécialisée et une compréhension approfondie des enjeux de chaque industrie.</p>
+                
+                <div class="industries-grid">
+                    <div class="industry-card">
+                        <div class="industry-image">
+                            <img src="energy-environment.jpg" alt="Énergie et environnement">
+                            <div class="industry-overlay"></div>
+                        </div>
+                        <h3>Énergie et environnement</h3>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-image">
+                            <img src="financial-services.jpg" alt="Services financiers">
+                            <div class="industry-overlay"></div>
+                        </div>
+                        <h3>Services financiers</h3>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-image">
+                            <img src="health-biotech.jpg" alt="Santé et biotechnologies">
+                            <div class="industry-overlay"></div>
+                        </div>
+                        <h3>Santé et biotechnologies</h3>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-image">
+                            <img src="agrofood.jpg" alt="Agroalimentaire">
+                            <div class="industry-overlay"></div>
+                        </div>
+                        <h3>Agroalimentaire</h3>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-image">
+                            <img src="industry.jpg" alt="Industrie">
+                            <div class="industry-overlay"></div>
+                        </div>
+                        <h3>Industrie</h3>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-image">
+                            <img src="technology-digital.jpg" alt="Technologie et digital">
+                            <div class="industry-overlay"></div>
+                        </div>
+                        <h3>Technologie et digital</h3>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-image">
+                            <img src="retail-distribution.jpg" alt="Distribution et commerce de détail">
+                            <div class="industry-overlay"></div>
+                        </div>
+                        <h3>Distribution et commerce de détail</h3>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-image">
+                            <img src="education-training.jpg" alt="Éducation et formation">
+                            <div class="industry-overlay"></div>
+                        </div>
+                        <h3>Éducation et formation</h3>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-image">
+                            <img src="real-estate.jpg" alt="Immobilier">
+                            <div class="industry-overlay"></div>
+                        </div>
+                        <h3>Immobilier</h3>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-image">
+                            <img src="public-sector.jpg" alt="Secteur public">
+                            <div class="industry-overlay"></div>
+                        </div>
+                        <h3>Secteur public</h3>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+          <!-- Client Info Section -->
+<section class="client-info">
+  <div class="container">
+    <div class="support-header">
+      <h2>Accompagnement par des consultants d'affaires de premier plan</h2>
+    </div>
+
+<div class="support-features">
+  <button class="support-feature" data-topic="strategie">
+    <div class="icon">📋</div>
+    <span>Stratégie</span>
+  </button>
+  <button class="support-feature" data-topic="defis">
+    <div class="icon">⚡</div>
+    <span>Défis</span>
+  </button>
+  <button class="support-feature" data-topic="opportunites">
+    <div class="icon">🎯</div>
+    <span>Opportunités</span>
+  </button>
+</div>
+  </div>
+<div class="container">
+  <div class="consultation-request">
+    <h3>Demander une consultation gratuite</h3>
+    <form action="send_consultation.php" method="POST">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="name">Votre nom *</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Téléphone (optionnel)</label>
+          <input type="tel" id="phone" name="phone" placeholder="+33 12 34 56 78">
+        </div>
+        <div class="form-group">
+          <label for="business">Nom de l’entreprise *</label>
+          <input type="text" id="business" name="business" required>
+        </div>
+        <div class="form-group">
+          <label for="business-age">Depuis combien de temps l’entreprise existe-t-elle ? *</label>
+          <select id="business-age" name="business-age" required>
+            <option value="">Veuillez sélectionner</option>
+            <option value="0-1">0-1 an</option>
+            <option value="1-3">1-3 ans</option>
+            <option value="3-5">3-5 ans</option>
+            <option value="5-10">5-10 ans</option>
+            <option value="10+">Plus de 10 ans</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="turnover">Quel est le chiffre d’affaires annuel de l’entreprise ? *</label>
+          <select id="turnover" name="turnover" required>
+            <option value="">Veuillez sélectionner</option>
+            <option value="0-100k">0-100k €</option>
+            <option value="100k-500k">100k-500k €</option>
+            <option value="500k-1m">500k-1M €</option>
+            <option value="1m-5m">1M-5M €</option>
+            <option value="5m+">Plus de 5M €</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="employees">Combien de personnes emploie l’entreprise ? *</label>
+          <select id="employees" name="employees" required>
+            <option value="">Veuillez sélectionner</option>
+            <option value="1-5">1-5 employés</option>
+            <option value="6-10">6-10 employés</option>
+            <option value="11-25">11-25 employés</option>
+            <option value="26-50">26-50 employés</option>
+            <option value="50+">Plus de 50 employés</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="business-type">Quelle est l’activité principale de votre entreprise ? *</label>
+          <input type="text" id="business-type" name="business-type" placeholder="Décrivez en quelques mots" required>
+        </div>
+        <div class="form-group full-width">
+          <label for="support-needed">Quel est le principal besoin d’accompagnement ? *</label>
+          <textarea id="support-needed" name="support-needed" rows="4" required></textarea>
+        </div>
+      </div>
+      <input type="hidden" id="form-title" name="form-title" value="Demander une consultation gratuite">
+      <button type="submit" class="submit-btn">Demander une consultation gratuite</button>
+    </form>
+  </div>
+</div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Khionê</h3>
+                <p>Votre partenaire stratégique pour la croissance et la transformation des PME.</p>
+            </div>
+           <div class="footer-section">
+                <h3>Navigation</h3>
+                <a href="index.html">Accueil</a>
+                <a href="apropos.html">À propos</a>
+                <a href="services.html">Services</a>
+                <a href="equipe.html">Équipe</a>
+                <a href="contact.html">Contactez-nous</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: contact@khione.fr</p>
+                <p>Téléphone: +33 6 62 96 03 82</p>
+                <p>Adresse: 14 rue Charles V, 75004 Paris</p>
+            </div>
+            <div class="footer-section">
+    <h3>Suivez-nous</h3>
+    <a href="https://www.linkedin.com/company/khion%C3%AA/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+</div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Khionê. Tous droits réservés.
+        </div>
+    </footer>
+    <script src="search.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const term = new URLSearchParams(window.location.search).get('highlight');
+  if (!term) return;
+
+  const regex = new RegExp(`(${term})`, 'gi');
+
+  function walk(node) {
+    if (node.nodeType === 3) {
+      const value = node.nodeValue;
+      if (regex.test(value)) {
+        const span = document.createElement('span');
+        span.innerHTML = value.replace(regex, '<mark>$1</mark>');
+        node.replaceWith(span);
+      }
+    } else if (node.nodeType === 1 && !['SCRIPT', 'STYLE'].includes(node.tagName)) {
+      for (let child of Array.from(node.childNodes)) {
+        walk(child);
+      }
+    }
+  }
+
+  walk(document.body);
+
+  const firstMatch = document.querySelector('mark');
+  if (firstMatch) {
+    firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const features = document.querySelectorAll('.support-feature');
+  const formTitle = document.querySelector('.consultation-request h3');
+  const hiddenTitleInput = document.getElementById('form-title');
+
+
+  const topicData = {
+    strategie: {
+      title: "Demande de consultation stratégique"
+    },
+    defis: {
+      title: "Demande de consultation sur les défis"
+    },
+    opportunites: {
+      title: "Demande de consultation sur les opportunités"
+    }
+  };
+
+  features.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const topic = btn.getAttribute('data-topic');
+      if (topic && topicData[topic]) {
+
+        if (formTitle) {
+          formTitle.textContent = topicData[topic].title;
+        }
+        hiddenTitleInput.value = topicData[topic].title; // update hidden input
+      }
+    });
+  });
+});
+</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('mainHeader');
+            const menuToggle = document.getElementById('menuToggle');
+            const menuClose = document.getElementById('menuClose');
+            const overlayMenu = document.getElementById('overlayMenu');
+            const searchBox = document.getElementById('searchBox');
+
+            // Header scroll behavior
+            function handleScroll() {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+
+                if (scrolled > 100) {
+                    header.classList.add('scrolled');
+                    header.classList.remove('hero-mode');
+                } else {
+                    header.classList.remove('scrolled');
+                    header.classList.add('hero-mode');
+                }
+            }
+
+            window.addEventListener('scroll', handleScroll);
+
+            // Menu functionality
+            function openMenu() {
+                overlayMenu.classList.add('active');
+                menuToggle.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                overlayMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            menuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (overlayMenu.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            menuClose.addEventListener('click', closeMenu);
+
+            // Close menu when clicking on menu links
+            const menuLinks = document.querySelectorAll('.menu-nav a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Close menu when clicking outside
+            overlayMenu.addEventListener('click', function(e) {
+                if (e.target === overlayMenu) {
+                    closeMenu();
+                }
+            });
+
+            // Close menu with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlayMenu.classList.contains('active')) {
+                    closeMenu();
+                }
+            });
+
+            // Search functionality
+            searchBox.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    const query = searchBox.value.trim();
+                    if (query) {
+                        window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+                    }
+                }
+            });
+
+            // Animation on scroll for other elements
+            const observerOptions = { 
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Enhanced search box interactions
+            searchBox.addEventListener('focus', function() {
+                this.parentElement.classList.add('search-focused');
+            });
+
+            searchBox.addEventListener('blur', function() {
+                this.parentElement.classList.remove('search-focused');
+            });
+
+            // Parallax effect for hero section
+            function handleParallax() {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                if (hero && scrolled < window.innerHeight) {
+                    const rate = scrolled * -0.3;
+                    hero.style.transform = `translateY(${rate}px)`;
+                }
+            }
+
+            window.addEventListener('scroll', handleParallax);
+
+            // Initialize
+            handleScroll();
+        });
+    </script>
+</body>
+</html>

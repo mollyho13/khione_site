@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khionê - Conseil Stratégique PME & Investisseurs</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+                /* Client Info Section */
+        .client-info {
+            padding: 60px 0;
+            background: white;
+            margin-bottom: 80px; 
+        }
+
+        .support-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .support-header h2 {
+            font-size: 3rem;
+            color: #2d3748;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .support-header p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .support-features {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0 5rem;
+            flex-wrap: wrap;
+        }
+
+        .support-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e6fffa 100%);
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .support-feature .icon {
+            font-size: 1.5rem;
+        }
+
+        .support-feature span {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .consultation-request {
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #2d3748;
+            padding: 4rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+        }
+
+        .consultation-request h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 16px;
+            border: 2px solid rgba(45, 55, 72, 0.2);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #181ec7 100%);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 2rem auto 0;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .mountain-explanation {
+            position: relative;
+            padding: 80px 0;
+            background: linear-gradient(135deg, 
+                rgba(15, 23, 42, 0.95) 0%, 
+                rgba(30, 41, 59, 0.98) 50%, 
+                rgba(15, 23, 42, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            margin: 20px;
+            overflow: hidden;
+        }
+
+        .mountain-explanation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        
+
+        .mountain-content {
+            display: grid;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .mountain-content h3 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa, #c084fc, #f472b6);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards 0.3s;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: white;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards 0.6s;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: cardReveal 0.8s ease forwards;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.9s; }
+        .service-card:nth-child(2) { animation-delay: 1.1s; }
+        .service-card:nth-child(3) { animation-delay: 1.3s; }
+        .service-card:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes cardReveal {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(96, 165, 250, 0.5);
+            box-shadow: 0 20px 40px rgba(96, 165, 250, 0.2);
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #60a5fa, #c084fc);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .service-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 10px;
+        }
+
+        .service-description {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .closing-statement {
+            background: linear-gradient(135deg, 
+                rgba(96, 165, 250, 0.1) 0%, 
+                rgba(192, 132, 252, 0.1) 100%);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards 1.8s;
+        }
+
+        .closing-statement p {
+            font-size: 1.1rem;
+            color: #e2e8f0;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(96, 165, 250, 0.6);
+            border-radius: 50%;
+            animation: particleFloat 8s linear infinite;
+        }
+
+        .particle:nth-child(odd) {
+            background: rgba(192, 132, 252, 0.6);
+            animation-duration: 12s;
+        }
+
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+        /* Desktop layout */
+        @media (min-width: 768px) {
+        #mobileNav {
+            display: block;
+            position: static;
+            box-shadow: none;
+        }
+
+        #mobileNav ul {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+        }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .mountain-explanation {
+                margin: 10px;
+                padding: 60px 0;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-card {
+                padding: 25px;
+            }
+            
+            .closing-statement {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header hero-mode" id="mainHeader">
+        <div class="header-container">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <a href="index.html" class="logo-brand" aria-label="Accueil Khionê">
+                    <img src="logo.png" alt="Logo Khionê">
+                </a>
+                <span class="logo-tagline">Conseil stratégique</span>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <div class="search-container">
+                    <input
+                        type="text"
+                        class="search-box"
+                        placeholder="Rechercher..."
+                        id="searchBox"
+                    >
+                </div>
+                
+                <a href="contact.html" class="contact-btn">Contact</a>
+                
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlay Menu -->
+    <div class="overlay-menu" id="overlayMenu">
+        <button class="menu-close" id="menuClose" aria-label="Fermer le menu">✕</button>
+        
+        <div class="menu-left">
+            <div class="menu-info">
+                <div class="menu-company-info">
+                    <img src="logo2.png" style="max-width: 300px; height: auto; margin-bottom: 20px;">
+                    <p>Votre partenaire stratégique pour la croissance des PME & ETI.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-right">
+            <nav>
+                <ul class="menu-nav">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="equipe.html">Équipe</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Élevez votre stratégie</h1>
+                <p class="subtitle">Khionê accompagne dirigeants de PME et investisseurs vers les sommets de la performance avec un conseil stratégique sur-mesure.</p>
+                <div class="hero-cta">
+                    <a href="services.html" class="cta-primary">
+                        Découvrir nos services
+                        <span>→</span>
+                    </a>
+                    <a href="contact.html" class="cta-secondary">Consultation gratuite</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Mountain Explanation -->
+    <section class="mountain-explanation">
+        <!-- Floating particles -->
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 70%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: 5s;"></div>
+
+        <div class="container">
+            <div class="mountain-content">
+                <div class="header-section">
+                    <h3>Investisseurs</h3>
+                    <p class="subtitle" style="color: white">Diagnostic opérationnel et croissance de vos participations</p>
+                    <p class="description" style="color: white">
+                        Khionê accompagne les investisseurs en capital-investissement dans le suivi opérationnel de leurs deals et de leurs participations :
+                    </p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🔍</div>
+                        <div class="service-title">Interventions Pre-Deal</div>
+                        <div class="service-description">
+                            Due-diligence opérationnelle approfondie pour sécuriser vos investissements
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">📊</div>
+                        <div class="service-title">Diagnostic Stratégique</div>
+                        <div class="service-description">
+                            Analyse complète et plan d'action stratégique personnalisé
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">🚀</div>
+                        <div class="service-title">Plateforme de Croissance</div>
+                        <div class="service-description">
+                            Création de l'infrastructure de croissance : vision stratégique, gestion, RH et organisation
+                        </div>
+                    </div>
+                </div>
+
+                <div class="closing-statement">
+                    <p>
+                        Khionê peut intervenir <span class="highlight">à la demande</span>, sur une entreprise ou sur une thématique ciblée, 
+                        mais également sur le mode de <span class="highlight">l'operating partner externalisé</span>, 
+                        avec un suivi opérationnel en continu de vos participations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="scrolling-container">
+                <div class="scrolling-track"style="margin-bottom: 2rem">
+                    <!-- First set of logos -->
+                    <div class="scrolling-logo">
+                        <img src="edl-logo.png" alt="EDL - Energies de Loire">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="soget-logo.png" alt="SOGET Software Factory">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="yescapa-logo.png" alt="Yescapa">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="worldplas-logo.png" alt="World Plas">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="cci-paris-logo.png" alt="CCI Paris Île-de-France">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="cci-lyon-logo.png" alt="CCI Lyon Métropole Saint-Étienne Roanne">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="cci-caen-logo.png" alt="CCI Caen Normandie">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="wilco-logo.png" alt="WILCO">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="bpifrance-logo.png" alt="BPIfrance">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="team-france-export-logo.png" alt="Team France Export">
+                    </div>
+                    
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="scrolling-logo">
+                        <img src="edl-logo.png" alt="EDL - Energies de Loire">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="soget-logo.png" alt="SOGET Software Factory">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="yescapa-logo.png" alt="Yescapa">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="worldplas-logo.png" alt="World Plas">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="cci-paris-logo.png" alt="CCI Paris Île-de-France">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="cci-lyon-logo.png" alt="CCI Lyon Métropole Saint-Étienne Roanne">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="cci-caen-logo.png" alt="CCI Caen Normandie">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="wilco-logo.png" alt="WILCO">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="bpifrance-logo.png" alt="BPIfrance">
+                    </div>
+                    <div class="scrolling-logo">
+                        <img src="team-france-export-logo.png" alt="Team France Export">
+                    </div>
+                </div>
+            <h2>Ce que disent nos clients</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        Khionê nous a accompagnés dans notre stratégie d'expansion internationale. Leur approche pragmatique et leur expertise nous ont permis d'augmenter notre chiffre d'affaires de 40% en 18 mois.
+                    </div>
+                    <div class="testimonial-author">CEO</div>
+                    <div class="testimonial-company">Industrie: Technologie</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        L'équipe de Khionê a transformé notre approche commerciale. Le diagnostic stratégique a révélé des opportunités que nous n'avions pas identifiées. Résultat : une croissance de 60% sur notre marché principal.
+                    </div>
+                    <div class="testimonial-author">Directeur Général</div>
+                    <div class="testimonial-company">Industrie: Biotechnologie</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        Grâce à Khionê, nous avons réussi notre transmission d'entreprise dans les meilleures conditions. Leur accompagnement a été déterminant pour maximiser la valeur de notre société.
+                    </div>
+                    <div class="testimonial-author">Fondateur</div>
+                    <div class="testimonial-company">Industrie: Environnement</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+        <!-- Client Info Section -->
+    <section class="client-info">
+        <div class="container">
+            <div class="consultation-request">
+                <h3>Demander une consultation gratuite</h3>
+                <form>
+                <div class="form-grid">
+                    <div class="form-group">
+                    <label for="name">Votre nom *</label>
+                    <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="phone">Téléphone (optionnel)</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+33 12 34 56 78">
+                    </div>
+                    <div class="form-group">
+                    <label for="business">Nom de l’entreprise *</label>
+                    <input type="text" id="business" name="business" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="business-age">Depuis combien de temps l’entreprise existe-t-elle ? *</label>
+                    <select id="business-age" name="business-age" required>
+                        <option value="">Veuillez sélectionner</option>
+                        <option value="0-1">0-1 an</option>
+                        <option value="1-3">1-3 ans</option>
+                        <option value="3-5">3-5 ans</option>
+                        <option value="5-10">5-10 ans</option>
+                        <option value="10+">Plus de 10 ans</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="turnover">Quel est le chiffre d’affaires annuel de l’entreprise ? *</label>
+                    <select id="turnover" name="turnover" required>
+                        <option value="">Veuillez sélectionner</option>
+                        <option value="0-100k">0-100k €</option>
+                        <option value="100k-500k">100k-500k €</option>
+                        <option value="500k-1m">500k-1M €</option>
+                        <option value="1m-5m">1M-5M €</option>
+                        <option value="5m+">Plus de 5M €</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="employees">Combien de personnes emploie l’entreprise ? *</label>
+                    <select id="employees" name="employees" required>
+                        <option value="">Veuillez sélectionner</option>
+                        <option value="1-5">1-5 employés</option>
+                        <option value="6-10">6-10 employés</option>
+                        <option value="11-25">11-25 employés</option>
+                        <option value="26-50">26-50 employés</option>
+                        <option value="50+">Plus de 50 employés</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="business-type">Quelle est l’activité principale de votre entreprise ? *</label>
+                    <input type="text" id="business-type" name="business-type" placeholder="Décrivez en quelques mots" required>
+                    </div>
+                    <div class="form-group full-width">
+                    <label for="support-needed">Quel est le principal besoin d’accompagnement ? *</label>
+                    <textarea id="support-needed" name="support-needed" rows="4" required></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Demander une consultation gratuite</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Khionê</h3>
+                    <p>Cabinet de conseil dédié aux dirigeants de PME et investisseurs à la recherche d'une croissance ambitieuse et durable.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <a href="index.html">Accueil</a>
+                    <a href="apropos.html">À propos</a>
+                    <a href="services.html">Services</a>
+                    <a href="equipe.html">Équipe</a>
+                    <a href="contact.html">Contactez-nous</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email : contact@khione.fr</p>
+                    <p>Téléphone: +33 6 62 96 03 82</p>
+                    <p>Adresse: 14 rue Charles V, 75004 Paris</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Suivez-nous</h3>
+                    <a href="https://www.linkedin.com/company/khion%C3%AA/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 Khionê. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('mainHeader');
+            const menuToggle = document.getElementById('menuToggle');
+            const menuClose = document.getElementById('menuClose');
+            const overlayMenu = document.getElementById('overlayMenu');
+            const searchBox = document.getElementById('searchBox');
+
+            // Header scroll behavior
+            function handleScroll() {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+
+                if (scrolled > 100) {
+                    header.classList.add('scrolled');
+                    header.classList.remove('hero-mode');
+                } else {
+                    header.classList.remove('scrolled');
+                    header.classList.add('hero-mode');
+                }
+            }
+
+            window.addEventListener('scroll', handleScroll);
+
+            // Menu functionality
+            function openMenu() {
+                overlayMenu.classList.add('active');
+                menuToggle.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                overlayMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            menuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (overlayMenu.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            menuClose.addEventListener('click', closeMenu);
+
+            // Close menu when clicking on menu links
+            const menuLinks = document.querySelectorAll('.menu-nav a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Close menu when clicking outside
+            overlayMenu.addEventListener('click', function(e) {
+                if (e.target === overlayMenu) {
+                    closeMenu();
+                }
+            });
+
+            // Close menu with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlayMenu.classList.contains('active')) {
+                    closeMenu();
+                }
+            });
+
+            // Search functionality
+            searchBox.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    const query = searchBox.value.trim();
+                    if (query) {
+                        window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+                    }
+                }
+            });
+
+            // Animation on scroll for other elements
+            const observerOptions = { 
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Enhanced search box interactions
+            searchBox.addEventListener('focus', function() {
+                this.parentElement.classList.add('search-focused');
+            });
+
+            searchBox.addEventListener('blur', function() {
+                this.parentElement.classList.remove('search-focused');
+            });
+
+            // Parallax effect for hero section
+            function handleParallax() {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                if (hero && scrolled < window.innerHeight) {
+                    const rate = scrolled * -0.3;
+                    hero.style.transform = `translateY(${rate}px)`;
+                }
+            }
+
+            window.addEventListener('scroll', handleParallax);
+
+            // Initialize
+            handleScroll();
+        });
+    </script>
+</body>
+</html>
