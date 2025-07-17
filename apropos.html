@@ -253,74 +253,6 @@
                     </div>
                 </button>
             </div>
-
-            <style>
-        /* Add these styles to your existing CSS */
-        .menu-toggle {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .menu-toggle:hover {
-            background-color: rgba(102, 126, 234, 0.1);
-        }
-
-        .menu-text {
-            font-size: 16px;
-            font-weight: 600;
-            color: #2d3748;
-            transition: color 0.3s ease;
-        }
-
-        .menu-icon {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            width: 24px;
-            height: 18px;
-        }
-
-        .menu-line {
-            width: 100%;
-            height: 2px;
-            background-color: #2d3748;
-            transition: all 0.3s ease;
-        }
-
-        /* Animation for active state */
-        .menu-toggle.active .menu-line:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .menu-toggle.active .menu-line:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active .menu-line:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .menu-text {
-                display: none; /* Hide text on mobile if needed */
-            }
-            
-            .menu-toggle {
-                gap: 0;
-                padding: 8px;
-            }
-        }
-
-        /* If you want to keep the text visible on mobile, remove the above media query */
-        </style>
         </div>
     </header>
 
@@ -372,13 +304,17 @@
             </div>
            
             <div class="why-us-card fade-in">
-                <div class="card-icon">💼</div>
+                <div class="card-icon">
+                    <img src="handshake.png" alt="Briefcase Icon" style="width: 50px; height: auto;"/>
+                </div>
                 <h3 class="card-title">Une double culture : entrepreneuriale et financière</h3>
                 <p class="card-description">Nous parlons aussi bien le langage du terrain que celui des investisseurs. Cette capacité à faire le lien entre opérationnel et stratégique fait notre singularité.</p>
             </div>
            
             <div class="why-us-card fade-in">
-                <div class="card-icon">🚀</div>
+                <div class="card-icon">
+                    <img src="consultant.png" alt="Briefcase Icon" style="width: 50px; height: auto;"/>
+                </div>
                 <h3 class="card-title">Des consultants avec une expérience entrepreneuriale réelle</h3>
                 <p class="card-description">Tous nos consultants ont créé, dirigé ou redressé des entreprises. Cette expérience concrète nourrit notre manière d'aborder chaque mission : pragmatique, engagée, et tournée vers l'action.</p>
             </div>
@@ -408,7 +344,7 @@
             </div>
            
             <div class="value-item fade-in">
-                <div class="value-icon">🤝</div>
+                <div class="value-icon"> ⛰️</div>
                 <h3 class="value-title">Présence sur le terrain</h3>
                 <p class="value-description">Nous croyons en l'importance d'être présents aux côtés de nos clients, pour comprendre leurs défis et les accompagner concrètement.</p>
             </div>
