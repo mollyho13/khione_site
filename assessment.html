@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Évaluation de Croissance - Khionê</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .assessment-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #f0f0f0;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .assessment-header {
+            padding: 40px 40px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .assessment-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .assessment-header p {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .question-container {
+            padding: 40px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .question {
+            display: none;
+            text-align: center;
+        }
+
+        .question.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .question h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .question-number {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .answer-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .answer-option {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .answer-option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+            transform: translateY(-2px);
+        }
+
+        .answer-option.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .answer-option h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .answer-option p {
+            font-size: 14px;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        .navigation {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            background: #f8f9fa;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #666;
+            border: 2px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background: #f0f0f0;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .results {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .results.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .result-title {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .result-description {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .cta-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .cta-title {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .contact-form {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .form-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .assessment-container {
+                margin: 10px;
+            }
+            
+            .assessment-header,
+            .question-container {
+                padding: 30px 20px;
+            }
+            
+            .navigation {
+                padding: 15px 20px;
+            }
+            
+            .contact-form {
+                flex-direction: column;
+            }
+            
+            .answer-option {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="assessment-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="assessment-header">
+            <h1>Évaluation de Croissance</h1>
+            <p>Découvrez le potentiel de développement de votre entreprise en 5 questions</p>
+        </div>
+
+        <div class="question-container" id="questionContainer">
+            <!-- Question 1 -->
+            <div class="question active" data-question="1">
+                <div class="question-number">Question 1 sur 5</div>
+                <h2>Quel est votre principal défi de croissance actuellement ?</h2>
+                <div class="answer-options">
+                    <div class="answer-option" data-value="strategy">
+                        <h3>Stratégie & Vision</h3>
+                        <p>Définir une direction claire et une stratégie de développement</p>
+                    </div>
+                    <div class="answer-option" data-value="operations">
+                        <h3>Optimisation Opérationnelle</h3>
+                        <p>Améliorer l'efficacité et structurer les processus internes</p>
+                    </div>
+                    <div class="answer-option" data-value="commercial">
+                        <h3>Développement Commercial</h3>
+                        <p>Accélérer les ventes et conquérir de nouveaux marchés</p>
+                    </div>
+                    <div class="answer-option" data-value="financial">
+                        <h3>Financement & Trésorerie</h3>
+                        <p>Sécuriser les ressources financières pour la croissance</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" data-question="2">
+                <div class="question-number">Question 2 sur 5</div>
+                <h2>Quelle est la taille actuelle de votre entreprise ?</h2>
+                <div class="answer-options">
+                    <div class="answer-option" data-value="startup">
+                        <h3>Start-up (0-1M€)</h3>
+                        <p>Entreprise en phase de lancement ou de validation du modèle</p>
+                    </div>
+                    <div class="answer-option" data-value="growing">
+                        <h3>PME en croissance (1-10M€)</h3>
+                        <p>Entreprise établie cherchant à accélérer sa croissance</p>
+                    </div>
+                    <div class="answer-option" data-value="established">
+                        <h3>ETI (10M€+)</h3>
+                        <p>Entreprise de taille intermédiaire avec ambitions d'expansion</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" data-question="3">
+                <div class="question-number">Question 3 sur 5</div>
+                <h2>Quel est votre horizon de développement prioritaire ?</h2>
+                <div class="answer-options">
+                    <div class="answer-option" data-value="immediate">
+                        <h3>Court terme (6-12 mois)</h3>
+                        <p>Résoudre des défis urgents et optimiser l'existant</p>
+                    </div>
+                    <div class="answer-option" data-value="medium">
+                        <h3>Moyen terme (1-3 ans)</h3>
+                        <p>Structurer la croissance et développer de nouveaux axes</p>
+                    </div>
+                    <div class="answer-option" data-value="long">
+                        <h3>Long terme (3+ ans)</h3>
+                        <p>Transformation majeure et expansion significative</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" data-question="4">
+                <div class="question-number">Question 4 sur 5</div>
+                <h2>Votre entreprise envisage-t-elle un développement international ?</h2>
+                <div class="answer-options">
+                    <div class="answer-option" data-value="yes-planning">
+                        <h3>Oui, c'est planifié</h3>
+                        <p>L'international fait partie de notre stratégie de développement</p>
+                    </div>
+                    <div class="answer-option" data-value="yes-considering">
+                        <h3>Oui, nous y réfléchissons</h3>
+                        <p>Nous étudions les opportunités à l'international</p>
+                    </div>
+                    <div class="answer-option" data-value="no">
+                        <h3>Non, focus domestique</h3>
+                        <p>Nous nous concentrons sur le marché français</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" data-question="5">
+                <div class="question-number">Question 5 sur 5</div>
+                <h2>Quel type d'accompagnement recherchez-vous ?</h2>
+                <div class="answer-options">
+                    <div class="answer-option" data-value="diagnosis">
+                        <h3>Diagnostic & Audit</h3>
+                        <p>Évaluer la situation actuelle et identifier les opportunités</p>
+                    </div>
+                    <div class="answer-option" data-value="strategy">
+                        <h3>Stratégie & Plan d'action</h3>
+                        <p>Définir une feuille de route claire pour la croissance</p>
+                    </div>
+                    <div class="answer-option" data-value="implementation">
+                        <h3>Mise en œuvre opérationnelle</h3>
+                        <p>Accompagnement hands-on dans l'exécution des projets</p>
+                    </div>
+                    <div class="answer-option" data-value="transformation">
+                        <h3>Transformation complète</h3>
+                        <p>Accompagnement global sur plusieurs axes de développement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results" id="resultsSection">
+            <div class="score-circle" id="scoreCircle">85%</div>
+            <h2 class="result-title" id="resultTitle">Excellent Potentiel de Croissance</h2>
+            <p class="result-description" id="resultDescription">
+                Votre entreprise présente un profil très favorable pour une croissance accélérée. 
+                Nos experts peuvent vous accompagner pour structurer et optimiser votre développement.
+            </p>
+            
+            <div class="cta-section">
+                <h3 class="cta-title">Discutons de vos opportunités de croissance</h3>
+                <p>Nos consultants vous proposent une consultation gratuite de 30 minutes pour analyser vos résultats et identifier les premières actions à mettre en place.</p>
+                
+                <div class="contact-form">
+                    <input type="text" class="form-input" placeholder="Votre nom" id="userName">
+                    <input type="email" class="form-input" placeholder="Votre email" id="userEmail">
+                    <input type="text" class="form-input" placeholder="Entreprise" id="userCompany">
+                    <button class="btn btn-primary" onclick="submitAssessment()">Demander un RDV gratuit</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation" id="navigation">
+            <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>Précédent</button>
+            <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Suivant</button>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+        let answers = {};
+        const totalQuestions = 5;
+
+        function updateProgress() {
+            const progress = (currentQuestion - 1) / totalQuestions * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function selectAnswer(questionNum, value) {
+            answers[questionNum] = value;
+            
+            // Remove previous selections
+            const options = document.querySelectorAll(`[data-question="${questionNum}"] .answer-option`);
+            options.forEach(option => option.classList.remove('selected'));
+            
+            // Add selection to clicked option
+            event.target.closest('.answer-option').classList.add('selected');
+            
+            // Enable next button
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                // Hide current question
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('active');
+                
+                currentQuestion++;
+                
+                // Show next question
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('active');
+                
+                // Update navigation
+                document.getElementById('prevBtn').disabled = false;
+                document.getElementById('nextBtn').disabled = !answers[currentQuestion];
+                
+                if (currentQuestion === totalQuestions) {
+                    document.getElementById('nextBtn').textContent = 'Voir les résultats';
+                }
+                
+                updateProgress();
+            } else {
+                showResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 1) {
+                // Hide current question
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('active');
+                
+                currentQuestion--;
+                
+                // Show previous question
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('active');
+                
+                // Update navigation
+                document.getElementById('prevBtn').disabled = currentQuestion === 1;
+                document.getElementById('nextBtn').disabled = false;
+                document.getElementById('nextBtn').textContent = 'Suivant';
+                
+                updateProgress();
+            }
+        }
+
+        function calculateScore() {
+            let score = 50; // Base score
+            
+            // Scoring logic based on answers
+            if (answers[1] === 'strategy') score += 10;
+            if (answers[1] === 'commercial') score += 15;
+            if (answers[2] === 'growing') score += 20;
+            if (answers[2] === 'established') score += 15;
+            if (answers[3] === 'medium' || answers[3] === 'long') score += 10;
+            if (answers[4] === 'yes-planning') score += 15;
+            if (answers[4] === 'yes-considering') score += 10;
+            if (answers[5] === 'transformation') score += 20;
+            if (answers[5] === 'strategy') score += 15;
+            
+            return Math.min(100, score);
+        }
+
+        function getResultText(score) {
+            if (score >= 85) {
+                return {
+                    title: "Excellent Potentiel de Croissance",
+                    description: "Votre entreprise présente un profil très favorable pour une croissance accélérée. Nos experts peuvent vous accompagner pour structurer et optimiser votre développement avec des résultats mesurables à court terme."
+                };
+            } else if (score >= 70) {
+                return {
+                    title: "Bon Potentiel de Développement",
+                    description: "Votre entreprise a de solides bases pour la croissance. Quelques ajustements stratégiques et opérationnels pourraient considérablement accélérer votre développement."
+                };
+            } else if (score >= 55) {
+                return {
+                    title: "Potentiel à Structurer",
+                    description: "Votre entreprise dispose d'opportunités de croissance qui nécessitent une approche structurée. Un diagnostic approfondi pourrait révéler des leviers de développement importants."
+                };
+            } else {
+                return {
+                    title: "Bases à Consolider",
+                    description: "Votre entreprise bénéficierait d'une approche progressive pour consolider ses fondations avant d'accélérer sa croissance. Nos experts peuvent vous accompagner dans cette structuration."
+                };
+            }
+        }
+
+        function showResults() {
+            const score = calculateScore();
+            const resultText = getResultText(score);
+            
+            // Hide question container and navigation
+            document.getElementById('questionContainer').style.display = 'none';
+            document.getElementById('navigation').style.display = 'none';
+            
+            // Update results
+            document.getElementById('scoreCircle').textContent = score + '%';
+            document.getElementById('resultTitle').textContent = resultText.title;
+            document.getElementById('resultDescription').textContent = resultText.description;
+            
+            // Show results
+            document.getElementById('resultsSection').classList.add('active');
+            
+            // Update progress to 100%
+            document.getElementById('progressFill').style.width = '100%';
+        }
+
+        function submitAssessment() {
+            const name = document.getElementById('userName').value;
+            const email = document.getElementById('userEmail').value;
+            const company = document.getElementById('userCompany').value;
+            
+            if (!name || !email || !company) {
+                alert('Veuillez remplir tous les champs');
+                return;
+            }
+            
+            // Here you would normally send the data to your server
+            // For now, we'll just show a success message
+            alert('Merci ! Nous vous contacterons dans les 24h pour planifier votre consultation gratuite.');
+            
+            // You could redirect to a thank you page or contact form
+            // window.location.href = 'contact.html?source=assessment';
+        }
+
+        // Add click handlers to answer options
+        document.addEventListener('DOMContentLoaded', function() {
+            const answerOptions = document.querySelectorAll('.answer-option');
+            answerOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const questionNum = parseInt(this.closest('.question').dataset.question);
+                    const value = this.dataset.value;
+                    selectAnswer(questionNum, value);
+                });
+            });
+            
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
