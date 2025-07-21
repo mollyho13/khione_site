@@ -17,10 +17,16 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #0b02b0 100%);
             min-height: 100vh;
-            display: flex;
+            display: block;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+        }
+        .main-content {
+            margin-top : 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 100%;
         }
 
         .assessment-container {
@@ -351,7 +357,7 @@
             </nav>
         </div>
     </div>
-
+<main class = "main-content">
     <div class="assessment-container">
         <div class="progress-bar">
             <div class="progress-fill" id="progressFill"></div>
@@ -498,7 +504,8 @@
             <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>Précédent</button>
             <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Suivant</button>
         </div>
-    </div>
+    </div> 
+</main>
      <footer>
         <div class="container footer-content">
             <div class="footer-section">
@@ -528,7 +535,7 @@
         <div class="footer-bottom">
             &copy; 2025 Khionê. Tous droits réservés.
         </div>
-    </footer>
+    </footer>   
     <script>
         let currentQuestion = 1;
         let answers = {};
