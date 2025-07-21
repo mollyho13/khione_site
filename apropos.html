@@ -566,5 +566,36 @@ window.addEventListener('DOMContentLoaded', () => {
             handleScroll();
         });
     </script>
+    <script src="search.js"></script>
+    <script>
+    window.addEventListener('DOMContentLoaded', () => {
+    const term = new URLSearchParams(window.location.search).get('highlight');
+    if (!term) return;
+
+    const regex = new RegExp(`(${term})`, 'gi');
+
+    function walk(node) {
+        if (node.nodeType === 3) {
+        const value = node.nodeValue;
+        if (regex.test(value)) {
+            const span = document.createElement('span');
+            span.innerHTML = value.replace(regex, '<mark>$1</mark>');
+            node.replaceWith(span);
+        }
+        } else if (node.nodeType === 1 && !['SCRIPT', 'STYLE'].includes(node.tagName)) {
+        for (let child of Array.from(node.childNodes)) {
+            walk(child);
+        }
+        }
+    }
+
+    walk(document.body);
+
+    const firstMatch = document.querySelector('mark');
+    if (firstMatch) {
+        firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    });
+    </script>
 </body>
 </html>

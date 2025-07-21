@@ -231,15 +231,12 @@
 
 <div class="support-features">
   <button class="support-feature" data-topic="strategie">
-    <div class="icon">📋</div>
     <span>Stratégie</span>
   </button>
   <button class="support-feature" data-topic="defis">
-    <div class="icon">⚡</div>
     <span>Défis</span>
   </button>
   <button class="support-feature" data-topic="opportunites">
-    <div class="icon">🎯</div>
     <span>Opportunités</span>
   </button>
 </div>
@@ -544,6 +541,483 @@ document.addEventListener('DOMContentLoaded', () => {
             // Initialize
             handleScroll();
         });
+    </script>
+    <!-- Add this code RIGHT BEFORE the closing </body> tag in your contact.html -->
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script>
+(function() {
+    // 🔥 REPLACE THESE WITH YOUR ACTUAL EMAILJS IDS
+    const EMAILJS_CONFIG = {
+        USER_ID: 'WKyaXHCOFoBuMA702',        // From EmailJS Account → API Keys
+        SERVICE_ID: 'service_anbctk2',          // From your Email Service
+        TEMPLATE_ID: 'template_fnsqnc9'         // From your Email Template
+    };
+    
+     // Initialize EmailJS
+    emailjs.init(EMAILJS_CONFIG.USER_ID);
+    
+    console.log('🚀 EmailJS initialized for Khionê consultation form');
+    
+    // Wait for page to load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Find your consultation form
+        const consultationForm = document.querySelector('form[action="send_consultation.php"]');
+        
+        if (consultationForm) {
+            console.log('✅ Consultation form found, setting up EmailJS handler...');
+            
+            // Override the form submission
+            consultationForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent PHP submission
+                console.log('📝 Form submitted - processing with EmailJS...');
+                
+                // Get the submit button
+                const submitBtn = this.querySelector('.submit-btn');
+                const originalBtnText = submitBtn.textContent;
+                
+                // Show loading state
+                submitBtn.textContent = '⏳ Envoi en cours...';
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.7';
+                submitBtn.style.cursor = 'not-allowed';
+                
+                // Collect form data
+                const formData = new FormData(this);
+                
+                // Prepare data for EmailJS template
+                const emailData = {
+                    // Contact Information
+                    user_name: formData.get('name') || '',
+                    user_email: formData.get('email') || '',
+                    user_phone: formData.get('phone') || 'Non renseigné',
+                    
+                    // Company Information  
+                    company_name: formData.get('business') || '',
+                    company_age: formData.get('business-age') || '',
+                    company_turnover: formData.get('turnover') || '',
+                    company_employees: formData.get('employees') || '',
+                    company_activity: formData.get('business-type') || '',
+                    
+                    // Support Need
+                    support_needed: formData.get('support-needed') || '',
+                    
+                    // Form Details
+                    form_type: formData.get('form-title') || 'Demande de consultation gratuite',
+                    submission_date: new Date().toLocaleString('fr-FR', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    })
+                };
+                
+                // Validation - check required fields
+                const requiredFields = [
+                    { field: 'user_name', label: 'Nom' },
+                    { field: 'user_email', label: 'Email' },
+                    { field: 'company_name', label: 'Nom de l\'entreprise' },
+                    { field: 'company_age', label: 'Ancienneté de l\'entreprise' },
+                    { field: 'company_turnover', label: 'Chiffre d\'affaires' },
+                    { field: 'company_employees', label: 'Nombre d\'employés' },
+                    { field: 'company_activity', label: 'Activité principale' },
+                    { field: 'support_needed', label: 'Besoin d\'accompagnement' }
+                ];
+                
+                const missingFields = requiredFields.filter(item => !emailData[item.field] || emailData[item.field].trim() === '');
+                
+                if (missingFields.length > 0) {
+                    const missingLabels = missingFields.map(item => item.label).join(', ');
+                    showMessage(`⚠️ Veuillez remplir tous les champs obligatoires: ${missingLabels}`, 'warning');
+                    resetButton();
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailData.user_email)) {
+                    showMessage('⚠️ Veuillez saisir une adresse email valide', 'warning');
+                    resetButton();
+                    return;
+                }
+                
+                console.log('📊 Sending consultation data:', emailData);
+                
+                // Send email via EmailJS
+                emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, emailData)
+                    .then(function(response) {
+                        console.log('✅ Email sent successfully!', response.status, response.text);
+                        showSuccessPage(emailData);
+                        consultationForm.reset(); // Clear the form
+                    })
+                    .catch(function(error) {
+                        console.error('❌ Email sending failed:', error);
+                        showErrorPage(emailData);
+                    })
+                    .finally(function() {
+                        resetButton();
+                    });
+                
+                function resetButton() {
+                    submitBtn.textContent = originalBtnText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.cursor = 'pointer';
+                }
+            });
+        } else {
+            console.error('❌ Consultation form not found! Make sure the form has action="send_consultation.php"');
+        }
+    });
+    
+    // Show temporary message
+    function showMessage(message, type = 'info') {
+        // Remove existing messages
+        const existingMsg = document.querySelector('.temp-message');
+        if (existingMsg) existingMsg.remove();
+        
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'temp-message';
+        messageDiv.innerHTML = message;
+        
+        const colors = {
+            warning: { bg: '#fef3c7', border: '#f59e0b', text: '#92400e' },
+            error: { bg: '#fecaca', border: '#ef4444', text: '#991b1b' },
+            info: { bg: '#dbeafe', border: '#3b82f6', text: '#1e40af' }
+        };
+        
+        const color = colors[type] || colors.info;
+        
+        Object.assign(messageDiv.style, {
+            position: 'fixed',
+            top: '20px',
+            right: '20px',
+            background: color.bg,
+            color: color.text,
+            border: `2px solid ${color.border}`,
+            padding: '15px 20px',
+            borderRadius: '8px',
+            zIndex: '10000',
+            fontSize: '16px',
+            fontWeight: '600',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+            maxWidth: '400px',
+            animation: 'slideIn 0.3s ease'
+        });
+        
+        // Add slide animation
+        if (!document.querySelector('#temp-message-styles')) {
+            const style = document.createElement('style');
+            style.id = 'temp-message-styles';
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        document.body.appendChild(messageDiv);
+        
+        // Auto remove after 5 seconds
+        setTimeout(() => {
+            if (messageDiv.parentNode) {
+                messageDiv.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => messageDiv.remove(), 300);
+            }
+        }, 5000);
+    }
+    
+    // Success page
+    function showSuccessPage(data) {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(15, 23, 42, 0.95); z-index: 99999; 
+            display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(10px);
+        `;
+        
+        overlay.innerHTML = `
+            <div style="
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(15, 23, 42, 0.95); 
+    z-index: 99999; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    padding: 40px 20px;
+    box-sizing: border-box;
+">
+    <div style="
+        background: white; 
+        padding: 50px; 
+        border-radius: 20px; 
+        text-align: center; 
+        max-width: 600px; 
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        position: relative; 
+        overflow-x: hidden;
+        animation: popupSlideIn 0.4s ease-out;
+    ">
+        <!-- Top accent bar -->
+        <div style="
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #181ec7);
+        "></div>
+        
+        <!-- Close button -->
+        <button onclick="this.parentElement.parentElement.remove()" style="
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            color: #64748b;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        " onmouseover="this.style.background='#f1f5f9'; this.style.color='#1e293b';" 
+           onmouseout="this.style.background='transparent'; this.style.color='#64748b';">
+            ✕
+        </button>
+        
+        <!-- Success emoji -->
+        <div style="font-size: 5rem; margin-bottom: 20px; margin-top: 10px;">Merci!</div>
+        
+        <!-- Title -->
+        <h1 style="
+            color: #1e293b; 
+            margin-bottom: 20px; 
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #667eea, #181ec7);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        ">Demande envoyée avec succès !</h1>
+        
+        <!-- Thank you message -->
+        <p style="color: #475569; font-size: 1.3rem; line-height: 1.6; margin-bottom: 25px;">
+            Merci <strong>${data.user_name}</strong> pour votre demande de consultation gratuite.
+        </p>
+        
+        <!-- Summary section -->
+        <div style="
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0); 
+            padding: 25px; 
+            border-radius: 12px; 
+            margin: 25px 0;
+            border-left: 4px solid #667eea;
+        ">
+            <h3 style="margin-top: 0; color: #334155;">Résumé de votre demande</h3>
+            <p style="margin: 8px 0;"><strong>Entreprise:</strong> ${data.company_name}</p>
+            <p style="margin: 8px 0;"><strong>Email de contact:</strong> ${data.user_email}</p>
+            <p style="margin: 8px 0;"><strong>CA annuel:</strong> ${data.company_turnover}</p>
+            <p style="margin-bottom: 0;"><strong>Employés:</strong> ${data.company_employees}</p>
+        </div>
+        
+        <!-- Next steps section -->
+        <div style="
+            background: #ecfdf5; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin: 25px 0; 
+            border: 1px solid #bbf7d0;
+        ">
+            <h4 style="margin-top: 0; color: #065f46;">Prochaines étapes</h4>
+            <p style="margin-bottom: 0; color: #047857;">
+                Notre équipe vous contactera dans les <strong>24-48h</strong> pour planifier votre consultation gratuite.
+            </p>
+        </div>
+        
+        <!-- Contact info -->
+        <div style="margin: 25px 0; color: #64748b;">
+            <p style="margin: 5px 0;">📧 <strong>contact@khione.fr</strong></p>
+            <p style="margin: 5px 0;">📞 <strong>+33 6 62 96 03 82</strong></p>
+        </div>
+        
+        <!-- Action buttons -->
+        <div style="margin-top: 25px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <a href="index.html" style="
+                background: linear-gradient(135deg, #667eea 0%, #181ec7 100%); 
+                color: white; 
+                padding: 15px 35px; 
+                border: none; 
+                border-radius: 10px; 
+                cursor: pointer; 
+                font-size: 1.1rem; 
+                font-weight: 600;
+                transition: all 0.3s ease; 
+                text-decoration: none;
+                display: inline-block;
+            " onmouseover="this.style.transform='translateY(-2px)'" 
+               onmouseout="this.style.transform='translateY(0)'">
+                Retourner au site
+            </a>
+            
+            <button onclick="this.parentElement.parentElement.parentElement.remove()" style="
+                background: #10b981; 
+                color: white; 
+                padding: 15px 35px; 
+                border: none; 
+                border-radius: 10px; 
+                cursor: pointer; 
+                font-size: 1.1rem; 
+                font-weight: 600;
+                transition: all 0.3s ease;
+            " onmouseover="this.style.transform='translateY(-2px)'" 
+               onmouseout="this.style.transform='translateY(0)'">
+                Parfait, merci ! 
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+@keyframes popupSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Mobile responsiveness for the popup */
+@media (max-width: 768px) {
+    .popup-container {
+        padding: 20px 15px !important;
+    }
+    
+    .popup-content {
+        padding: 30px 20px !important;
+        border-radius: 15px !important;
+    }
+    
+    .popup-title {
+        font-size: 1.8rem !important;
+    }
+    
+    .popup-buttons {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+    
+    .popup-button {
+        width: 100% !important;
+        padding: 12px 20px !important;
+    }
+}
+</style>
+        `;
+        
+        document.body.appendChild(overlay);
+        
+        // Auto-close after 15 seconds
+        setTimeout(() => {
+            if (overlay.parentNode) {
+                overlay.style.opacity = '0';
+                overlay.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => overlay.remove(), 500);
+            }
+        }, 8000);
+    }
+    
+    // Error page with mailto fallback
+    function showErrorPage(data) {
+        const subject = `Consultation gratuite - ${data.company_name}`;
+        const body = `
+Bonjour,
+
+Je souhaite demander une consultation gratuite pour mon entreprise.
+
+INFORMATIONS DE CONTACT:
+- Nom: ${data.user_name}
+- Email: ${data.user_email}
+- Téléphone: ${data.user_phone}
+
+INFORMATIONS ENTREPRISE:
+- Entreprise: ${data.company_name}
+- Ancienneté: ${data.company_age}
+- CA annuel: ${data.company_turnover}
+- Employés: ${data.company_employees}
+- Activité: ${data.company_activity}
+
+BESOIN D'ACCOMPAGNEMENT:
+${data.support_needed}
+
+Merci de me recontacter rapidement.
+
+Cordialement,
+${data.user_name}
+        `.trim();
+        
+        const mailtoLink = `mailto:molly.ho@khione.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        
+        showMessage('⚠️ Problème technique détecté. Ouverture de votre client email...', 'warning');
+        
+        setTimeout(() => {
+            window.location.href = mailtoLink;
+            showMessage('📧 Si votre email ne s\'ouvre pas, contactez directement contact@khione.fr', 'info');
+        }, 2000);
+    }
+})();
+</script>
+<script src="search.js"></script>
+    <script>
+    window.addEventListener('DOMContentLoaded', () => {
+    const term = new URLSearchParams(window.location.search).get('highlight');
+    if (!term) return;
+
+    const regex = new RegExp(`(${term})`, 'gi');
+
+    function walk(node) {
+        if (node.nodeType === 3) {
+        const value = node.nodeValue;
+        if (regex.test(value)) {
+            const span = document.createElement('span');
+            span.innerHTML = value.replace(regex, '<mark>$1</mark>');
+            node.replaceWith(span);
+        }
+        } else if (node.nodeType === 1 && !['SCRIPT', 'STYLE'].includes(node.tagName)) {
+        for (let child of Array.from(node.childNodes)) {
+            walk(child);
+        }
+        }
+    }
+
+    walk(document.body);
+
+    const firstMatch = document.querySelector('mark');
+    if (firstMatch) {
+        firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    });
     </script>
   </body>
 </html>
