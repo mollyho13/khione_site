@@ -1,7 +1,8 @@
-# My proposed website remodel (previously deployed on GitHub Pages)
+# Proposal for B2B Company Website Remodel (Previously deployed on GitHub Pages)
 Includes:
 - Carousel of previous clients
-- Company Intake Form
-- Examples of Client Testimonies
-- Multiple html files
+- Examples of client testimonies
+- Prospective company intake form
+- Multiple HTML pages
 - Collapsible menu bar
+- Search function
